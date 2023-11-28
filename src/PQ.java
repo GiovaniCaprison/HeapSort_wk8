@@ -52,12 +52,18 @@ class PQ {
      * @param index The index of the heap element to be heapified up.
      */
     private void heapifyUp(int index) {
+        // Loop until the index reaches the root (index 0).
         while (index > 0) {
+            // Calculate the index of the parent node.
             int parentIndex = (index - 1) / 2;
+            // Compare the current node with its parent. If the current node has a lower priority (fewer vowels),
+            // or is correctly ordered alphabetically, then the heap is correctly ordered.
             if (compare(heap.get(index), heap.get(parentIndex)) < 0) {
-                break; // Correct order
+                break; // Correct order, stop heapifying up.
             }
+            // If the current node has a higher priority, swap it with its parent.
             swap(index, parentIndex);
+            // Move up to the parent index and continue heapifying up.
             index = parentIndex;
         }
     }
@@ -69,23 +75,30 @@ class PQ {
      */
     private void heapifyDown(int index) {
         int size = heap.size();
+        // Loop until the index exceeds the size of the heap.
         while (index < size) {
+            // Calculate the indices of the left and right children of the current node.
             int leftChildIndex = 2 * index + 1;
             int rightChildIndex = 2 * index + 2;
+            // Start with the assumption that the current index holds the largest value.
             int largestIndex = index;
-
+    
+            // Check if the left child exists and has a greater priority than the current node.
             if (leftChildIndex < size && compare(heap.get(leftChildIndex), heap.get(largestIndex)) > 0) {
                 largestIndex = leftChildIndex;
             }
-
+    
+            // Check if the right child exists and has a greater priority than the current largest.
             if (rightChildIndex < size && compare(heap.get(rightChildIndex), heap.get(largestIndex)) > 0) {
                 largestIndex = rightChildIndex;
             }
-
+    
+            // If the largest value is not at the current index, swap and continue down the heap.
             if (largestIndex != index) {
                 swap(index, largestIndex);
                 index = largestIndex;
             } else {
+                // If the largest value is at the current index, the heap is correctly ordered.
                 break;
             }
         }

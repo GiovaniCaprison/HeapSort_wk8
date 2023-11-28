@@ -7,7 +7,7 @@ public class Main {
         // Create a priority queue object.
         PQ pq = new PQ();
         // File path for the input file containing commands.
-        String fp = "/Users/louisgrennell/lab8/text.txt";
+        String fp = "/example/file/path";
         
         try (BufferedReader reader = new BufferedReader(new FileReader(fp))) {
             String line;
